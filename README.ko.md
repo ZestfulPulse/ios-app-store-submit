@@ -1,5 +1,16 @@
 # ios-app-store-submit
 
+[🇺🇸 English](README.md) | [🇰🇷 한국어](README.ko.md)
+
+![Release](https://img.shields.io/github/v/release/ZestfulPulse/ios-app-store-submit)
+![License](https://img.shields.io/github/license/ZestfulPulse/ios-app-store-submit)
+![Stars](https://img.shields.io/github/stars/ZestfulPulse/ios-app-store-submit)
+![Last Commit](https://img.shields.io/github/last-commit/ZestfulPulse/ios-app-store-submit)
+
+Claude Code skill for automating iOS App Store submission.
+
+# ios-app-store-submit
+
 [English README](./README.md)
 
 Flutter/iOS 앱을 `flutter build`부터 `WAITING_FOR_REVIEW`(심사 대기)까지 — 빌드, 코드사이닝, App Store Connect 제출을 전 과정 자동화하는 [Claude Code](https://claude.com/claude-code) 스킬입니다.
