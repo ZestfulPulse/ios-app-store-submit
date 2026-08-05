@@ -1,3 +1,7 @@
+![License](https://img.shields.io/github/license/ZestfulPulse/ios-app-store-submit)
+![Stars](https://img.shields.io/github/stars/ZestfulPulse/ios-app-store-submit)
+![Last Commit](https://img.shields.io/github/last-commit/ZestfulPulse/ios-app-store-submit)
+
 # ios-app-store-submit
 
 [한국어 README](./README.ko.md)
