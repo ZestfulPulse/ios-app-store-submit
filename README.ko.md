@@ -9,7 +9,6 @@
 
 Claude Code skill for automating iOS App Store submission.
 
-# ios-app-store-submit
 
 [English README](./README.md)
 
