@@ -1,0 +1,32 @@
+# Apple App Store Connect
+*.p8
+AuthKey_*.p8
+
+# Signing
+*.p12
+*.cer
+*.csr
+*.pem
+*.key
+*.mobileprovision
+
+# Local signing folders
+.asc/
+signing/
+
+# Environment
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+build/
+*.xcarchive
+*.ipa
+
+# Python
+__pycache__/
+*.pyc
