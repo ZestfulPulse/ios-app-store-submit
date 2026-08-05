@@ -1,5 +1,7 @@
 # ios-app-store-submit
 
+[한국어 README](./README.ko.md)
+
 A [Claude Code](https://claude.com/claude-code) skill that builds, signs, and submits Flutter/iOS apps to App Store Connect — end to end, from `flutter build` to `WAITING_FOR_REVIEW`.
 
 Written for **headless/agent-driven Mac environments**: no interactive Xcode GUI session, no GUI keychain unlock prompts available. Every workaround in here was hit and solved on a real submission, not theorized.
