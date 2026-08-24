@@ -1,0 +1,11 @@
+{
+  "data_types": {
+    "PRECISE_LOCATION": {
+      "transmission": true,
+      "collection": false,
+      "linked_to_user": false,
+      "tracking": false,
+      "purposes": ["APP_FUNCTIONALITY"]
+    }
+  }
+}

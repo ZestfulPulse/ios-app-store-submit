@@ -1,0 +1,5 @@
+Guideline 2.3 - Performance - Accurate Metadata
+
+Your app's metadata included placeholder text such as "Lorem ipsum" or "TODO" that does not accurately reflect the app's content and functionality.
+
+Please revise your app description and resubmit.

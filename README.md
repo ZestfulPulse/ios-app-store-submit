@@ -1,71 +1,334 @@
+# ios-app-store-submit
+
+[🇺🇸 English](README.md) | [🇰🇷 한국어](README.ko.md)
+
+![Release](https://img.shields.io/github/v/release/ZestfulPulse/ios-app-store-submit)
 ![License](https://img.shields.io/github/license/ZestfulPulse/ios-app-store-submit)
 ![Stars](https://img.shields.io/github/stars/ZestfulPulse/ios-app-store-submit)
 ![Last Commit](https://img.shields.io/github/last-commit/ZestfulPulse/ios-app-store-submit)
 
-# ios-app-store-submit
+> **From automating App Store submission to deciding whether an iOS app is actually ready to submit, and helping recover when review fails.**
 
-[한국어 README](./README.ko.md)
+`ios-app-store-submit` preserves the existing **Archive → Upload → Submit** workflow while adding evidence-driven Readiness, Apple Review Guidelines, Privacy, and HIG/Design checks before submission.
 
-A [Claude Code](https://claude.com/claude-code) skill that builds, signs, and submits Flutter/iOS apps to App Store Connect — end to end, from `flutter build` to `WAITING_FOR_REVIEW`.
+This is the evolution of ios-app-store-submit, not a new repository. The public release target is **v2.0.0**.
 
-Written for **headless/agent-driven Mac environments**: no interactive Xcode GUI session, no GUI keychain unlock prompts available. Every workaround in here was hit and solved on a real submission, not theorized.
+## v2 Architecture
 
-## What it covers
+![ios-app-store-submit v2 architecture](assets/infographics/ios-app-store-submit-v2-architecture.svg)
 
-- Discovering a project's bundle ID / team ID / version instead of hardcoding them
-- App Store Connect API key setup (`asc auth login --bypass-keychain`)
-- Code signing without an interactive keychain: certificate/profile generation via CSR files, a dedicated `build.keychain`, the OpenSSL `-legacy` PKCS12 gotcha, and why signing flags must be scoped to the app target only (never passed globally to `xcodebuild`)
-- Archive → export → validate → upload, plus how to pull the *real* reason out of a cryptic `buildUploads` error code
-- What App Store Connect metadata the `asc` CLI can automate (name, keywords, pricing, age rating, review contact...) vs. what needs a human in a browser (App Privacy data-use declarations — not in the public API at all)
-- A real API quirk in territory/pricing availability (`POST /v2/appAvailabilities` requiring the entire 175-territory catalog on first creation) and how to work around it
-- Getting a real, standalone-launchable (non-debug) build onto a physical device
-- Icon regeneration and a checklist for spotting a placeholder/mockup image before it gets baked into a build
+v2 preserves the original build, signing, upload, and submission workflow while adding evidence-driven intelligence before and after App Review.
 
-See [`SKILL.md`](./SKILL.md) for the full playbook.
+## Current Status
+
+| Area | Status | Description |
+|---|---|---|
+| Readiness Core | ✅ | Technical / Metadata / Reviewability |
+| Safe Auto-Fix | ✅ | Plan → Apply → Verify → Rollback |
+| Apple Pre-Review | ✅ | App Review Guidelines preflight |
+| Privacy Intelligence | ✅ | Permissions, Privacy Manifest, SDK and network evidence |
+| HIG / Design Review | ✅ | Accessibility, Layout, Localization, Interaction |
+| Rejection Recovery | ✅ | Rejection → cause → fix plan → verification → reply draft |
+| Closed-loop Resubmission | ✅ | User-approved, evidence-bound resubmission orchestration |
+
+The v2.0.0 release combines all seven phases behind read-only inspection and explicit external-mutation gates.
+
+## What Makes It Different?
+
+Traditional submission automation:
+
+```text
+Archive → Validate → Upload → Submit
+```
+
+The enhanced workflow:
+
+```text
+App Project
+    ↓
+Readiness
+    ↓
+Apple Pre-Review
+    ↓
+Privacy Intelligence
+    ↓
+HIG / Design Review
+    ↓
+Safe Fix → Verify
+    ↓
+Archive → Upload → Submit
+    ↓
+Apple Review
+    ↓
+Rejection Recovery
+    ↓
+Verify → User Approval → Resubmit → Verify
+```
+
+The core idea is simple: **review the app before sending it to Apple.**
+
+## Design Principles
+
+### Evidence before confidence
+Missing evidence is not treated as success.
+
+```text
+UNKNOWN ≠ PASS
+```
+
+### Safe fixes only
+Risky or semantic changes such as bundle identifiers, signing, certificates/provisioning, privacy semantics, user-authored content, UI semantics, navigation, and legal copy are not silently changed.
+
+### Verify before claim
+Rejection recovery must not tell a reviewer that an issue is `Fixed` or `Resolved` without supporting verification evidence.
+
+### No external mutation by inspection
+Inspection modes do not perform network calls, mutate App Store Connect, change signing state, or submit the app by default.
 
 ## Install
 
-Symlink (or clone) this into your Claude Code skills directory:
+Clone the existing repository into the Claude Code skill directory:
 
 ```bash
 mkdir -p ~/.agents/skills
-git clone https://github.com/cwoneday/ios-app-store-submit ~/.agents/skills/ios-app-store-submit
+git clone https://github.com/ZestfulPulse/ios-app-store-submit.git ~/.agents/skills/ios-app-store-submit
 ln -s ../../.agents/skills/ios-app-store-submit ~/.claude/skills/ios-app-store-submit
 ```
 
-Claude Code auto-discovers skills under `~/.claude/skills/`. Once linked, it's picked up automatically in any project — no per-project setup.
-
-## Use
-
-From any Flutter/iOS project, just ask Claude Code naturally:
-
-> "Build this and submit it to the App Store"
-> "Set up code signing for this app"
-> "The App Store upload failed, find out why"
-> "Fill in the App Store Connect metadata"
-
-The skill triggers on requests like these. It is project-agnostic — it reads bundle ID, team ID, and version from whatever project it's invoked in, and never assumes a prior project's identifiers.
+This is the Claude Code skill for the complete workflow. Claude Code discovers skills under `~/.claude/skills/`, so the same skill can be used from any iOS or Flutter project.
 
 ## Prerequisites
 
-- An Apple Developer Program membership (paid, Admin or App Manager role)
-- Xcode installed locally
-- The [`asc` CLI](https://github.com/rorkai/app-store-connect-cli-skills) (the skill will guide you through installing/configuring it if missing)
-- An App Store Connect API key (`.p8`) — the skill walks you through generating one; store it under `~/.asc/keys/` with `chmod 600`, never paste the raw key into chat
+- Apple Developer Program membership with appropriate App Store Connect access
+- Xcode and Flutter installed locally
+- The [`asc` CLI](https://github.com/rorkai/app-store-connect-cli-skills)
+- An App Store Connect API key stored locally under `~/.asc/keys/` with restrictive permissions; never place credentials in reports or commands
 
-## Bundled scripts
+Headless signing uses a dedicated build keychain and the bundled `scripts/setup_build_keychain.sh`. Archive/export/upload still follow the existing skill guidance; signing and provisioning changes are never inferred by readiness inspection.
 
-| Script | Purpose |
+## Use
+
+Ask Claude Code naturally, for example:
+
+> “Build and submit this app to App Store Connect.”
+> “Run the readiness and Apple pre-review checks.”
+> “Analyze this rejection and prepare a verified resubmission plan.”
+
+## Quick Start
+
+Basic inspection:
+
+```bash
+python3 scripts/readiness_check.py /path/to/your/app
+```
+
+Recommended full pre-submission inspection:
+
+```bash
+python3 scripts/readiness_check.py \
+  /path/to/your/app \
+  --pre-review \
+  --privacy \
+  --design
+```
+
+Machine-readable JSON:
+
+```bash
+python3 scripts/readiness_check.py \
+  /path/to/your/app \
+  --pre-review \
+  --privacy \
+  --design \
+  --json
+```
+
+## Understanding Results
+
+| Status | Meaning |
 |---|---|
-| `scripts/gen_app_icons.py` | Regenerate iOS/macOS/Android launcher icons from one square source PNG (`pip install Pillow`) |
-| `scripts/setup_build_keychain.sh` | Idempotently create/unlock a dedicated `build.keychain` for headless code signing — `source` it to get `$KEYCHAIN`/`$KC_PASS` |
+| `PASS` | No issue found within the implemented inspection scope |
+| `RISK` | A risk signal deserves review |
+| `UNKNOWN` | Required evidence is missing |
+| `BLOCKED` | A deterministic pre-submission problem was found |
 
-## What this skill will not do for you
+A `PASS` is not a guarantee of App Store approval.
 
-- Click "Publish" on the App Store Connect App Privacy questionnaire — Apple doesn't expose this via API
-- Guess at your review-contact name/phone or copyright holder — always asks
-- Fabricate demo account credentials, screenshots, or an app icon from a mockup file — flags these for your input instead
+## Core Features
+
+### Readiness Core
+Inspects technical readiness, metadata, and reviewability with evidence and provenance.
+
+### Safe Auto-Fix
+
+```text
+Finding → Fix Plan → Diff → Apply → Verify
+                                  ↓
+                           Rollback on failure
+```
+
+Includes stale-plan detection and before/after hash evidence.
+
+### Apple Pre-Review
+Uses a normalized offline registry derived from Apple Review Guidelines. Current categories include Performance, Metadata, Privacy, and Review Access. Heuristics alone cannot block submission.
+
+### Privacy Intelligence
+Inspects local evidence including:
+
+- `Info.plist` permissions
+- `PrivacyInfo.xcprivacy`
+- Required Reason API evidence
+- SDK / package dependencies
+- Network/backend signals
+- Privacy Policy evidence
+
+Access is deliberately separated from collection.
+
+```text
+Location permission present
+→ ACCESS = YES
+→ COLLECTION = UNKNOWN
+→ TRACKING = UNKNOWN
+```
+
+### HIG / Design Review
+Covers Accessibility, Layout, Localization, and Interaction. Questions requiring rendered UI evidence remain `UNKNOWN` instead of being falsely passed.
+
+## Rejection Recovery
+
+Target flow:
+
+```text
+Apple Rejection
+  ↓
+Parse
+  ↓
+Guideline / Privacy / HIG Mapping
+  ↓
+Root Cause
+  ↓
+Fix Plan
+  ↓
+Verification
+  ↓
+Reply Draft
+```
+
+Intended usage:
+
+```bash
+python3 scripts/readiness_check.py \
+  /path/to/your/app \
+  --rejection /path/to/rejection.txt
+```
+
+Unverified changes are not allowed to become verified reviewer-facing claims.
+
+## Closed-loop Resubmission
+
+Phase 7 completes the recovery loop:
+
+```text
+Inspect → Pre-Review → Privacy → Design → Fix → Verify → Submit
+  → Review → Recover → Verify → User Approval → Resubmit
+```
+
+Build a read-only plan from a local Phase 6 recovery report:
+
+```bash
+python3 scripts/readiness_check.py \
+  /path/to/your/app \
+  --resubmit-plan /path/to/recovery-report.json
+```
+
+The plan prints exact discovered App Store Connect IDs, command previews, blockers, approval status, and a binding digest. It performs zero external mutation. Record approval separately, then execute only the exact approved digest:
+
+```bash
+python3 scripts/readiness_check.py \
+  /path/to/your/app \
+  --resubmit-plan /path/to/recovery-report.json \
+  --approve-resubmit \
+  --approval-digest PLAN_DIGEST
+
+python3 scripts/readiness_check.py \
+  /path/to/your/app \
+  --resubmit-plan /path/to/recovery-report.json \
+  --execute-resubmit \
+  --approval-digest PLAN_DIGEST
+```
+
+There is no auto-resubmit. A changed build, version, reply, fix evidence, or plan digest makes the approval stale. Execution requires all gates, `ready_to_send`, and read-only post-submit state verification such as `WAITING_FOR_REVIEW` or `IN_REVIEW`.
+
+## Actual Submission
+
+The existing submission workflow remains intact:
+
+```text
+asc xcode archive
+asc publish appstore
+asc review submit
+```
+
+The intelligence layer adds safeguards around the submission engine rather than replacing it.
+
+## Safety Boundaries
+
+Inspection does not automatically perform:
+
+- App Store Connect mutations
+- Apple review submission
+- GitHub mutations
+- Certificate / provisioning / signing changes
+- App Privacy answer publication
+- Risky UI or privacy semantic changes
+- Automatic resubmission; explicit user approval is always required
+
+## Roadmap
+
+```text
+Phase 1  Readiness Core             ✅
+Phase 2  Safe Auto-Fix              ✅
+Phase 3  Apple Pre-Review           ✅
+Phase 4  Privacy Intelligence       ✅
+Phase 5  HIG / Design Review        ✅
+Phase 6  Rejection Recovery         ✅
+Phase 7  Closed-loop Resubmission   ✅
+```
+
+Target closed loop:
+
+```text
+Inspect → Fix → Verify → Submit
+                       ↓
+                  Apple Review
+                    ↙       ↘
+               Approved   Rejected
+                             ↓
+                          Recover
+                             ↓
+                           Verify
+                             ↓
+                        User Approval
+                             ↓
+                          Resubmit
+```
+
+## Project Philosophy
+
+The biggest risk in App Store automation is not insufficient automation. It is **automation pretending to know what it cannot prove**.
+
+- Decide when evidence supports a decision.
+- Keep insufficiently supported facts `UNKNOWN`.
+- Automate only bounded safe changes.
+- Never claim resolution before verification.
+- Maintain explicit approval boundaries around external mutations.
+
+## Bundled Scripts
+
+- `scripts/readiness_check.py` — read-only readiness, pre-review, privacy, design, recovery, and resubmission planning gates.
+- `scripts/gen_app_icons.py` — regenerates launcher icon sizes from one source PNG.
+- `scripts/setup_build_keychain.sh` — creates/unlocks the dedicated headless signing keychain.
 
 ## License
 
-MIT
+See the repository license file.

@@ -1,0 +1,19 @@
+// !$*UTF8*$!
+{
+	objects = {
+		111111111111111111111111 = {
+			isa = PBXNativeTarget;
+			name = Runner;
+		};
+		333333333333333333333333 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ABCDE12345;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.privacy;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+	};
+}

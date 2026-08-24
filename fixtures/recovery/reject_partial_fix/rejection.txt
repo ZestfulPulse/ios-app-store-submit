@@ -1,0 +1,5 @@
+Guideline 2.1 - Information Needed
+
+We were unable to complete your review because we could not sign in to your app using the demo account credentials you provided. Please provide valid demo account credentials.
+
+We also found that your app's metadata description contains placeholder text. Please update the app description.

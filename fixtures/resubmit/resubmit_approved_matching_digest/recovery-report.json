@@ -1,0 +1,7 @@
+{
+  "recovery_report_id": "recovery:approved",
+  "submission": {"app_id": "123456789", "version": "2.0.0", "build_id": "204", "submission_id": "submission-approved"},
+  "recovery_summary": {"resubmit_candidate": "YES"},
+  "verification_results": [{"root_cause_id": "rc:metadata", "claim_status": "VERIFIED", "pending_reason": null}],
+  "reply_drafts": [{"draft_id": "reply:approved", "ready_to_send": true, "claims": [{"status": "VERIFIED"}]}]
+}

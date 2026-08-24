@@ -1,0 +1,8 @@
+{
+  "root_causes": {
+    "REVIEW_ACCESS": {
+      "attested": true,
+      "note": "Developer rotated the demo account password in App Store Connect review notes on 2026-08-20 and confirmed sign-in locally."
+    }
+  }
+}

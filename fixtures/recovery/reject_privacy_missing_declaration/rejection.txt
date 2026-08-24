@@ -1,0 +1,5 @@
+Guideline 5.1.1 - Legal - Privacy - Data Collection and Storage
+
+Your app's privacy practices may not have been accurately reflected in the App Privacy section of your App Store Connect record.
+
+Please review your app's data collection practices and update your App Privacy details.

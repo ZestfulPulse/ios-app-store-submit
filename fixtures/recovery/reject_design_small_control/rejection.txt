@@ -1,0 +1,5 @@
+We found that your app does not comply with the Human Interface Guidelines.
+
+Specifically, we noticed an interactive control that may be too small to reliably tap, which does not meet accessibility touch target expectations.
+
+Please review your interface's touch target sizing and resubmit.

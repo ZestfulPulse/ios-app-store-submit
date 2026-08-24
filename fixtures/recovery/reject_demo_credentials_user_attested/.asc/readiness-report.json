@@ -1,0 +1,1285 @@
+{
+  "project": "fixtures/recovery/reject_demo_credentials_user_attested",
+  "strict": false,
+  "ready": "NO",
+  "final_gate": "NO",
+  "counts": {
+    "PASS": 20,
+    "ADVISORY": 2,
+    "RISK": 1,
+    "BLOCKED": 1,
+    "UNKNOWN": 1
+  },
+  "gates": [
+    {
+      "gate": "TECHNICAL",
+      "status": "ADVISORY",
+      "findings": [
+        {
+          "finding_id": "technical.project",
+          "gate": "TECHNICAL",
+          "rule_id": "PROJECT",
+          "title": "Runner Xcode project",
+          "status": "PASS",
+          "message": "Found ios/Runner.xcodeproj.",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "ios/Runner.xcodeproj",
+              "key": null,
+              "observed": "present",
+              "expected": "present",
+              "source": "filesystem",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.pubspec",
+          "gate": "TECHNICAL",
+          "rule_id": "PUBSPEC",
+          "title": "Flutter pubspec",
+          "status": "PASS",
+          "message": "Found pubspec.yaml.",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "pubspec.yaml",
+              "key": null,
+              "observed": "present",
+              "expected": "present",
+              "source": "filesystem",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "pubspec.yaml",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.pubspec_version",
+          "gate": "TECHNICAL",
+          "rule_id": "PUBSPEC_VERSION",
+          "title": "Flutter version/build",
+          "status": "PASS",
+          "message": "Parsed Flutter version/build 1.2.3+4.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "pubspec.yaml",
+              "key": "version",
+              "observed": "1.2.3+4",
+              "expected": null,
+              "source": "project",
+              "line": 3,
+              "command": null
+            }
+          ],
+          "source_path": "pubspec.yaml",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.bundle_id",
+          "gate": "TECHNICAL",
+          "rule_id": "BUNDLE_ID",
+          "title": "Bundle ID",
+          "status": "PASS",
+          "message": "Found PRODUCT_BUNDLE_IDENTIFIER=com.example.readiness.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": "PRODUCT_BUNDLE_IDENTIFIER",
+              "observed": "com.example.readiness",
+              "expected": null,
+              "source": "project",
+              "line": 22,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.team_id",
+          "gate": "TECHNICAL",
+          "rule_id": "TEAM_ID",
+          "title": "Development team",
+          "status": "PASS",
+          "message": "Found DEVELOPMENT_TEAM=ABCDE12345.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": "DEVELOPMENT_TEAM",
+              "observed": "ABCDE12345",
+              "expected": null,
+              "source": "project",
+              "line": 20,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.device_family",
+          "gate": "TECHNICAL",
+          "rule_id": "DEVICE_FAMILY",
+          "title": "Targeted device family",
+          "status": "PASS",
+          "message": "Found TARGETED_DEVICE_FAMILY=1,2.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": "TARGETED_DEVICE_FAMILY",
+              "observed": "1,2",
+              "expected": null,
+              "source": "project",
+              "line": 23,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.info_plist",
+          "gate": "TECHNICAL",
+          "rule_id": "INFO_PLIST",
+          "title": "Runner Info.plist",
+          "status": "PASS",
+          "message": "Found ios/Runner/Info.plist.",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "ios/Runner/Info.plist",
+              "key": null,
+              "observed": "present",
+              "expected": "present",
+              "source": "filesystem",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner/Info.plist",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.entitlements",
+          "gate": "TECHNICAL",
+          "rule_id": "ENTITLEMENTS",
+          "title": "Entitlements file",
+          "status": "ADVISORY",
+          "message": "An entitlements file is present; its values are recorded but not validated in Phase 1.",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "ios/Runner/Runner.entitlements",
+              "key": null,
+              "observed": "present",
+              "expected": "reviewed",
+              "source": "filesystem",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner/Runner.entitlements",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.deployment_target",
+          "gate": "TECHNICAL",
+          "rule_id": "DEPLOYMENT_TARGET",
+          "title": "iOS deployment target",
+          "status": "PASS",
+          "message": "Found IPHONEOS_DEPLOYMENT_TARGET=15.0.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": "IPHONEOS_DEPLOYMENT_TARGET",
+              "observed": "15.0",
+              "expected": null,
+              "source": "project",
+              "line": 21,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.release_config",
+          "gate": "TECHNICAL",
+          "rule_id": "RELEASE_CONFIG",
+          "title": "Release configuration",
+          "status": "PASS",
+          "message": "A Release configuration is present.",
+          "evidence": [
+            {
+              "kind": "xcode_configuration",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": null,
+              "observed": "Release",
+              "expected": "present",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "technical.runner_target",
+          "gate": "TECHNICAL",
+          "rule_id": "RUNNER_TARGET",
+          "title": "Runner target",
+          "status": "PASS",
+          "message": "Identified a Runner native target.",
+          "evidence": [
+            {
+              "kind": "xcode_target",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": null,
+              "observed": "Runner",
+              "expected": "present",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        }
+      ]
+    },
+    {
+      "gate": "METADATA",
+      "status": "PASS",
+      "findings": [
+        {
+          "finding_id": "metadata.display_name",
+          "gate": "METADATA",
+          "rule_id": "DISPLAY_NAME",
+          "title": "App display-name candidate",
+          "status": "PASS",
+          "message": "Found display-name candidate 'Readiness Fixture'.",
+          "evidence": [
+            {
+              "kind": "plist",
+              "path": "ios/Runner/Info.plist",
+              "key": "CFBundleDisplayName",
+              "observed": "Readiness Fixture",
+              "expected": "non-empty name",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner/Info.plist",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.version",
+          "gate": "METADATA",
+          "rule_id": "VERSION",
+          "title": "Version candidate",
+          "status": "PASS",
+          "message": "Found version candidate 1.2.3+4.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "pubspec.yaml",
+              "key": "version",
+              "observed": "1.2.3+4",
+              "expected": null,
+              "source": "project",
+              "line": 3,
+              "command": null
+            }
+          ],
+          "source_path": "pubspec.yaml",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.build_number",
+          "gate": "METADATA",
+          "rule_id": "BUILD_NUMBER",
+          "title": "Build number candidate",
+          "status": "PASS",
+          "message": "Found build number candidate 4.",
+          "evidence": [
+            {
+              "kind": "yaml",
+              "path": "pubspec.yaml",
+              "key": "version",
+              "observed": "4",
+              "expected": "numeric build number",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "pubspec.yaml",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.bundle_id",
+          "gate": "METADATA",
+          "rule_id": "BUNDLE_ID",
+          "title": "Bundle ID candidate",
+          "status": "PASS",
+          "message": "Found bundle ID candidate com.example.readiness.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "ios/Runner.xcodeproj/project.pbxproj",
+              "key": "PRODUCT_BUNDLE_IDENTIFIER",
+              "observed": "com.example.readiness",
+              "expected": null,
+              "source": "project",
+              "line": 22,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.privacy_policy",
+          "gate": "METADATA",
+          "rule_id": "PRIVACY_POLICY",
+          "title": "privacy policy URL candidate",
+          "status": "PASS",
+          "message": "Found local privacy policy url candidate candidate.",
+          "evidence": [
+            {
+              "kind": "plist",
+              "path": "ios/Runner/Info.plist",
+              "key": "PrivacyPolicyURL",
+              "observed": "https://example.com/privacy",
+              "expected": "URL candidate",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner/Info.plist",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.support_url",
+          "gate": "METADATA",
+          "rule_id": "SUPPORT_URL",
+          "title": "support URL candidate",
+          "status": "PASS",
+          "message": "Found local support url candidate candidate.",
+          "evidence": [
+            {
+              "kind": "plist",
+              "path": "ios/Runner/Info.plist",
+              "key": "SupportURL",
+              "observed": "https://example.com/support",
+              "expected": "URL candidate",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner/Info.plist",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.localizations",
+          "gate": "METADATA",
+          "rule_id": "LOCALIZATIONS",
+          "title": "Localization directories",
+          "status": "PASS",
+          "message": "Found 1 localization directory/directories.",
+          "evidence": [
+            {
+              "kind": "directory",
+              "path": "ios/Runner/en.lproj",
+              "key": null,
+              "observed": "present",
+              "expected": "localization directory",
+              "source": "filesystem",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": null,
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.infoplist_strings",
+          "gate": "METADATA",
+          "rule_id": "INFOPLIST_STRINGS",
+          "title": "InfoPlist.strings",
+          "status": "PASS",
+          "message": "Found InfoPlist.strings localization file(s).",
+          "evidence": [
+            {
+              "kind": "file",
+              "path": "ios/Runner/en.lproj/InfoPlist.strings",
+              "key": null,
+              "observed": "present",
+              "expected": "InfoPlist.strings",
+              "source": "filesystem",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": null,
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "metadata.localized_app_name",
+          "gate": "METADATA",
+          "rule_id": "LOCALIZED_APP_NAME",
+          "title": "App-name localization availability",
+          "status": "PASS",
+          "message": "Found localized app-name keys.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "ios/Runner/en.lproj/InfoPlist.strings",
+              "key": null,
+              "observed": "\"CFBundleDisplayName\" = \"Readiness Fixture\";",
+              "expected": null,
+              "source": "project",
+              "line": 1,
+              "command": null
+            }
+          ],
+          "source_path": null,
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        }
+      ]
+    },
+    {
+      "gate": "REVIEWABILITY",
+      "status": "BLOCKED",
+      "findings": [
+        {
+          "finding_id": "reviewability.login",
+          "gate": "REVIEWABILITY",
+          "rule_id": "LOGIN",
+          "title": "Possible login functionality",
+          "status": "RISK",
+          "message": "Login/authentication functionality appears possible; review access should be checked.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "lib/main.dart",
+              "key": null,
+              "observed": "void signIn() {}",
+              "expected": null,
+              "source": "project",
+              "line": 2,
+              "command": null
+            }
+          ],
+          "source_path": "lib/main.dart",
+          "confidence": 0.82,
+          "fixability": "MANUAL",
+          "suggested_fix": "Provide a working demo/review account and exact review steps.",
+          "blocking": false
+        },
+        {
+          "finding_id": "reviewability.review_info",
+          "gate": "REVIEWABILITY",
+          "rule_id": "REVIEW_INFO",
+          "title": "Demo/review-account configuration",
+          "status": "BLOCKED",
+          "message": "Login appears possible but no demo/review-account configuration or notes candidate was found.",
+          "evidence": [
+            {
+              "kind": "text",
+              "path": "lib/main.dart",
+              "key": null,
+              "observed": "void signIn() {}",
+              "expected": null,
+              "source": "project",
+              "line": 2,
+              "command": null
+            }
+          ],
+          "source_path": "lib/main.dart",
+          "confidence": 1.0,
+          "fixability": "MANUAL",
+          "suggested_fix": "Document a non-production demo account and review steps, or make the login path unnecessary for review.",
+          "blocking": true
+        },
+        {
+          "finding_id": "reviewability.review_notes",
+          "gate": "REVIEWABILITY",
+          "rule_id": "REVIEW_NOTES",
+          "title": "Review-notes candidate",
+          "status": "UNKNOWN",
+          "message": "No local review-notes candidate was found; ASC review details were not queried.",
+          "evidence": [
+            {
+              "kind": "inspection",
+              "path": ".",
+              "key": null,
+              "observed": "not found",
+              "expected": "optional review notes",
+              "source": "read-only inspection",
+              "line": null,
+              "command": "scan local text files"
+            }
+          ],
+          "source_path": null,
+          "confidence": 0.7,
+          "fixability": "MANUAL",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "reviewability.backend",
+          "gate": "REVIEWABILITY",
+          "rule_id": "BACKEND",
+          "title": "Backend URL/environment dependency",
+          "status": "ADVISORY",
+          "message": "No backend URL/environment dependency was detected by the local scan.",
+          "evidence": [
+            {
+              "kind": "inspection",
+              "path": ".",
+              "key": null,
+              "observed": "not detected",
+              "expected": "backend dependency decision",
+              "source": "read-only inspection",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": null,
+          "confidence": 0.6,
+          "fixability": "MANUAL",
+          "suggested_fix": null,
+          "blocking": false
+        },
+        {
+          "finding_id": "reviewability.permissions",
+          "gate": "REVIEWABILITY",
+          "rule_id": "PERMISSIONS",
+          "title": "Usage-description keys",
+          "status": "PASS",
+          "message": "Found usage-description keys for declared permissions.",
+          "evidence": [
+            {
+              "kind": "plist",
+              "path": "ios/Runner/Info.plist",
+              "key": "NSCameraUsageDescription",
+              "observed": "Camera is used for capture.",
+              "expected": "reviewable permission rationale",
+              "source": "project",
+              "line": null,
+              "command": null
+            }
+          ],
+          "source_path": "ios/Runner/Info.plist",
+          "confidence": 1.0,
+          "fixability": "NONE",
+          "suggested_fix": null,
+          "blocking": false
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "technical.bundle_id",
+      "gate": "TECHNICAL",
+      "rule_id": "BUNDLE_ID",
+      "title": "Bundle ID",
+      "status": "PASS",
+      "message": "Found PRODUCT_BUNDLE_IDENTIFIER=com.example.readiness.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": "PRODUCT_BUNDLE_IDENTIFIER",
+          "observed": "com.example.readiness",
+          "expected": null,
+          "source": "project",
+          "line": 22,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.deployment_target",
+      "gate": "TECHNICAL",
+      "rule_id": "DEPLOYMENT_TARGET",
+      "title": "iOS deployment target",
+      "status": "PASS",
+      "message": "Found IPHONEOS_DEPLOYMENT_TARGET=15.0.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": "IPHONEOS_DEPLOYMENT_TARGET",
+          "observed": "15.0",
+          "expected": null,
+          "source": "project",
+          "line": 21,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.device_family",
+      "gate": "TECHNICAL",
+      "rule_id": "DEVICE_FAMILY",
+      "title": "Targeted device family",
+      "status": "PASS",
+      "message": "Found TARGETED_DEVICE_FAMILY=1,2.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": "TARGETED_DEVICE_FAMILY",
+          "observed": "1,2",
+          "expected": null,
+          "source": "project",
+          "line": 23,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.entitlements",
+      "gate": "TECHNICAL",
+      "rule_id": "ENTITLEMENTS",
+      "title": "Entitlements file",
+      "status": "ADVISORY",
+      "message": "An entitlements file is present; its values are recorded but not validated in Phase 1.",
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "ios/Runner/Runner.entitlements",
+          "key": null,
+          "observed": "present",
+          "expected": "reviewed",
+          "source": "filesystem",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner/Runner.entitlements",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.info_plist",
+      "gate": "TECHNICAL",
+      "rule_id": "INFO_PLIST",
+      "title": "Runner Info.plist",
+      "status": "PASS",
+      "message": "Found ios/Runner/Info.plist.",
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "ios/Runner/Info.plist",
+          "key": null,
+          "observed": "present",
+          "expected": "present",
+          "source": "filesystem",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner/Info.plist",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.project",
+      "gate": "TECHNICAL",
+      "rule_id": "PROJECT",
+      "title": "Runner Xcode project",
+      "status": "PASS",
+      "message": "Found ios/Runner.xcodeproj.",
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "ios/Runner.xcodeproj",
+          "key": null,
+          "observed": "present",
+          "expected": "present",
+          "source": "filesystem",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.pubspec",
+      "gate": "TECHNICAL",
+      "rule_id": "PUBSPEC",
+      "title": "Flutter pubspec",
+      "status": "PASS",
+      "message": "Found pubspec.yaml.",
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "pubspec.yaml",
+          "key": null,
+          "observed": "present",
+          "expected": "present",
+          "source": "filesystem",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "pubspec.yaml",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.pubspec_version",
+      "gate": "TECHNICAL",
+      "rule_id": "PUBSPEC_VERSION",
+      "title": "Flutter version/build",
+      "status": "PASS",
+      "message": "Parsed Flutter version/build 1.2.3+4.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "pubspec.yaml",
+          "key": "version",
+          "observed": "1.2.3+4",
+          "expected": null,
+          "source": "project",
+          "line": 3,
+          "command": null
+        }
+      ],
+      "source_path": "pubspec.yaml",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.release_config",
+      "gate": "TECHNICAL",
+      "rule_id": "RELEASE_CONFIG",
+      "title": "Release configuration",
+      "status": "PASS",
+      "message": "A Release configuration is present.",
+      "evidence": [
+        {
+          "kind": "xcode_configuration",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": null,
+          "observed": "Release",
+          "expected": "present",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.runner_target",
+      "gate": "TECHNICAL",
+      "rule_id": "RUNNER_TARGET",
+      "title": "Runner target",
+      "status": "PASS",
+      "message": "Identified a Runner native target.",
+      "evidence": [
+        {
+          "kind": "xcode_target",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": null,
+          "observed": "Runner",
+          "expected": "present",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "technical.team_id",
+      "gate": "TECHNICAL",
+      "rule_id": "TEAM_ID",
+      "title": "Development team",
+      "status": "PASS",
+      "message": "Found DEVELOPMENT_TEAM=ABCDE12345.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": "DEVELOPMENT_TEAM",
+          "observed": "ABCDE12345",
+          "expected": null,
+          "source": "project",
+          "line": 20,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.build_number",
+      "gate": "METADATA",
+      "rule_id": "BUILD_NUMBER",
+      "title": "Build number candidate",
+      "status": "PASS",
+      "message": "Found build number candidate 4.",
+      "evidence": [
+        {
+          "kind": "yaml",
+          "path": "pubspec.yaml",
+          "key": "version",
+          "observed": "4",
+          "expected": "numeric build number",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "pubspec.yaml",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.bundle_id",
+      "gate": "METADATA",
+      "rule_id": "BUNDLE_ID",
+      "title": "Bundle ID candidate",
+      "status": "PASS",
+      "message": "Found bundle ID candidate com.example.readiness.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "ios/Runner.xcodeproj/project.pbxproj",
+          "key": "PRODUCT_BUNDLE_IDENTIFIER",
+          "observed": "com.example.readiness",
+          "expected": null,
+          "source": "project",
+          "line": 22,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner.xcodeproj/project.pbxproj",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.display_name",
+      "gate": "METADATA",
+      "rule_id": "DISPLAY_NAME",
+      "title": "App display-name candidate",
+      "status": "PASS",
+      "message": "Found display-name candidate 'Readiness Fixture'.",
+      "evidence": [
+        {
+          "kind": "plist",
+          "path": "ios/Runner/Info.plist",
+          "key": "CFBundleDisplayName",
+          "observed": "Readiness Fixture",
+          "expected": "non-empty name",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner/Info.plist",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.infoplist_strings",
+      "gate": "METADATA",
+      "rule_id": "INFOPLIST_STRINGS",
+      "title": "InfoPlist.strings",
+      "status": "PASS",
+      "message": "Found InfoPlist.strings localization file(s).",
+      "evidence": [
+        {
+          "kind": "file",
+          "path": "ios/Runner/en.lproj/InfoPlist.strings",
+          "key": null,
+          "observed": "present",
+          "expected": "InfoPlist.strings",
+          "source": "filesystem",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": null,
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.localizations",
+      "gate": "METADATA",
+      "rule_id": "LOCALIZATIONS",
+      "title": "Localization directories",
+      "status": "PASS",
+      "message": "Found 1 localization directory/directories.",
+      "evidence": [
+        {
+          "kind": "directory",
+          "path": "ios/Runner/en.lproj",
+          "key": null,
+          "observed": "present",
+          "expected": "localization directory",
+          "source": "filesystem",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": null,
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.localized_app_name",
+      "gate": "METADATA",
+      "rule_id": "LOCALIZED_APP_NAME",
+      "title": "App-name localization availability",
+      "status": "PASS",
+      "message": "Found localized app-name keys.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "ios/Runner/en.lproj/InfoPlist.strings",
+          "key": null,
+          "observed": "\"CFBundleDisplayName\" = \"Readiness Fixture\";",
+          "expected": null,
+          "source": "project",
+          "line": 1,
+          "command": null
+        }
+      ],
+      "source_path": null,
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.privacy_policy",
+      "gate": "METADATA",
+      "rule_id": "PRIVACY_POLICY",
+      "title": "privacy policy URL candidate",
+      "status": "PASS",
+      "message": "Found local privacy policy url candidate candidate.",
+      "evidence": [
+        {
+          "kind": "plist",
+          "path": "ios/Runner/Info.plist",
+          "key": "PrivacyPolicyURL",
+          "observed": "https://example.com/privacy",
+          "expected": "URL candidate",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner/Info.plist",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.support_url",
+      "gate": "METADATA",
+      "rule_id": "SUPPORT_URL",
+      "title": "support URL candidate",
+      "status": "PASS",
+      "message": "Found local support url candidate candidate.",
+      "evidence": [
+        {
+          "kind": "plist",
+          "path": "ios/Runner/Info.plist",
+          "key": "SupportURL",
+          "observed": "https://example.com/support",
+          "expected": "URL candidate",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner/Info.plist",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "metadata.version",
+      "gate": "METADATA",
+      "rule_id": "VERSION",
+      "title": "Version candidate",
+      "status": "PASS",
+      "message": "Found version candidate 1.2.3+4.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "pubspec.yaml",
+          "key": "version",
+          "observed": "1.2.3+4",
+          "expected": null,
+          "source": "project",
+          "line": 3,
+          "command": null
+        }
+      ],
+      "source_path": "pubspec.yaml",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "reviewability.backend",
+      "gate": "REVIEWABILITY",
+      "rule_id": "BACKEND",
+      "title": "Backend URL/environment dependency",
+      "status": "ADVISORY",
+      "message": "No backend URL/environment dependency was detected by the local scan.",
+      "evidence": [
+        {
+          "kind": "inspection",
+          "path": ".",
+          "key": null,
+          "observed": "not detected",
+          "expected": "backend dependency decision",
+          "source": "read-only inspection",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": null,
+      "confidence": 0.6,
+      "fixability": "MANUAL",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "reviewability.login",
+      "gate": "REVIEWABILITY",
+      "rule_id": "LOGIN",
+      "title": "Possible login functionality",
+      "status": "RISK",
+      "message": "Login/authentication functionality appears possible; review access should be checked.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "lib/main.dart",
+          "key": null,
+          "observed": "void signIn() {}",
+          "expected": null,
+          "source": "project",
+          "line": 2,
+          "command": null
+        }
+      ],
+      "source_path": "lib/main.dart",
+      "confidence": 0.82,
+      "fixability": "MANUAL",
+      "suggested_fix": "Provide a working demo/review account and exact review steps.",
+      "blocking": false
+    },
+    {
+      "finding_id": "reviewability.permissions",
+      "gate": "REVIEWABILITY",
+      "rule_id": "PERMISSIONS",
+      "title": "Usage-description keys",
+      "status": "PASS",
+      "message": "Found usage-description keys for declared permissions.",
+      "evidence": [
+        {
+          "kind": "plist",
+          "path": "ios/Runner/Info.plist",
+          "key": "NSCameraUsageDescription",
+          "observed": "Camera is used for capture.",
+          "expected": "reviewable permission rationale",
+          "source": "project",
+          "line": null,
+          "command": null
+        }
+      ],
+      "source_path": "ios/Runner/Info.plist",
+      "confidence": 1.0,
+      "fixability": "NONE",
+      "suggested_fix": null,
+      "blocking": false
+    },
+    {
+      "finding_id": "reviewability.review_info",
+      "gate": "REVIEWABILITY",
+      "rule_id": "REVIEW_INFO",
+      "title": "Demo/review-account configuration",
+      "status": "BLOCKED",
+      "message": "Login appears possible but no demo/review-account configuration or notes candidate was found.",
+      "evidence": [
+        {
+          "kind": "text",
+          "path": "lib/main.dart",
+          "key": null,
+          "observed": "void signIn() {}",
+          "expected": null,
+          "source": "project",
+          "line": 2,
+          "command": null
+        }
+      ],
+      "source_path": "lib/main.dart",
+      "confidence": 1.0,
+      "fixability": "MANUAL",
+      "suggested_fix": "Document a non-production demo account and review steps, or make the login path unnecessary for review.",
+      "blocking": true
+    },
+    {
+      "finding_id": "reviewability.review_notes",
+      "gate": "REVIEWABILITY",
+      "rule_id": "REVIEW_NOTES",
+      "title": "Review-notes candidate",
+      "status": "UNKNOWN",
+      "message": "No local review-notes candidate was found; ASC review details were not queried.",
+      "evidence": [
+        {
+          "kind": "inspection",
+          "path": ".",
+          "key": null,
+          "observed": "not found",
+          "expected": "optional review notes",
+          "source": "read-only inspection",
+          "line": null,
+          "command": "scan local text files"
+        }
+      ],
+      "source_path": null,
+      "confidence": 0.7,
+      "fixability": "MANUAL",
+      "suggested_fix": null,
+      "blocking": false
+    }
+  ]
+}

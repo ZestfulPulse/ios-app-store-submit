@@ -1,0 +1,5 @@
+Guideline 2.3 - Performance - Accurate Metadata
+
+Your app description contains placeholder or filler text such as "Lorem ipsum" that does not accurately describe your app.
+
+Please update your app description and resubmit.

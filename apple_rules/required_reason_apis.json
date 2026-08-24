@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "source_name": "Apple Required Reason API Categories",
+  "source_url": "https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api",
+  "source_last_updated": "2026-06-08",
+  "snapshot_date": "2026-08-23",
+  "note": "Offline normalized snapshot for conservative, deterministic text-match detection only. This is not a substitute for full static/binary analysis and does not claim complete coverage of every required-reason API call site.",
+  "categories": [
+    {
+      "category": "FILE_TIMESTAMP",
+      "manifest_key": "NSPrivacyAccessedAPICategoryFileTimestamp",
+      "allowed_reasons": ["DDA9.1", "C617.1", "3B52.1", "0A2A.1"],
+      "detection_pattern": "\\b(fileModificationDate|creationDate|NSFileModificationDate|NSFileCreationDate|contentModificationDateKey)\\b"
+    },
+    {
+      "category": "SYSTEM_BOOT_TIME",
+      "manifest_key": "NSPrivacyAccessedAPICategorySystemBootTime",
+      "allowed_reasons": ["35F9.1", "8FFB.1", "3D61.1"],
+      "detection_pattern": "\\b(systemUptime|system_boot_time|ProcessInfo\\.processInfo\\.systemUptime)\\b"
+    },
+    {
+      "category": "DISK_SPACE",
+      "manifest_key": "NSPrivacyAccessedAPICategoryDiskSpace",
+      "allowed_reasons": ["E174.1", "85F4.1", "7D9E.1", "B728.1"],
+      "detection_pattern": "\\b(volumeAvailableCapacity|getFreeDiskSpace|disk_space_plus|volumeTotalCapacityKey)\\b"
+    },
+    {
+      "category": "USER_DEFAULTS",
+      "manifest_key": "NSPrivacyAccessedAPICategoryUserDefaults",
+      "allowed_reasons": ["CA92.1", "1C8F.1", "AC6B.1"],
+      "detection_pattern": "\\b(NSUserDefaults|SharedPreferences|shared_preferences)\\b"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
+  <title id="title">ios-app-store-submit v2.0 architecture</title>
+  <desc id="desc">A top-to-bottom architecture showing readiness and review intelligence around the preserved v1 build, signing, upload, and submission core, followed by an Apple Review approval path or a user-approved rejection recovery loop.</desc>
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="12" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="gray"/>
+      <feComponentTransfer in="gray" result="softNoise"><feFuncA type="table" tableValues="0 0.035"/></feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="softNoise" mode="multiply"/>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="6" stdDeviation="3" flood-color="#4b4a47" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
+      <path d="M1 1 L12 7 L1 13" fill="none" stroke="#4b4a47" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
+      <path d="M1 1 L12 7 L1 13" fill="none" stroke="#e8754c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
+      <path d="M1 1 L12 7 L1 13" fill="none" stroke="#22a9c8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .ink { fill: #2c2b29; font-family: "Avenir Next", "Helvetica Neue", "Noto Sans", sans-serif; }
+      .mono { fill: #67645e; font-family: "SFMono-Regular", "Roboto Mono", monospace; }
+      .card-title { fill: #2c2b29; font-family: "Avenir Next", "Helvetica Neue", "Noto Sans", sans-serif; font-size: 25px; font-weight: 700; letter-spacing: 0.2px; }
+      .card-body { fill: #4e4b46; font-family: "Avenir Next", "Helvetica Neue", "Noto Sans", sans-serif; font-size: 18px; }
+      .small { fill: #625f59; font-family: "Avenir Next", "Helvetica Neue", "Noto Sans", sans-serif; font-size: 15px; }
+      .tiny { fill: #67645e; font-family: "SFMono-Regular", "Roboto Mono", monospace; font-size: 12px; letter-spacing: 1.2px; }
+      .rough { stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="1500" fill="#f7f3e9" filter="url(#paper)"/>
+  <rect x="18" y="18" width="1164" height="1464" rx="26" fill="none" stroke="#d8d1c4" stroke-width="3"/>
+
+  <text x="600" y="65" text-anchor="middle" class="tiny">SUBMISSION INTELLIGENCE / ARCHITECTURE</text>
+  <text x="600" y="116" text-anchor="middle" class="ink" font-size="48" font-weight="800" letter-spacing="1.5">ios-app-store-submit v2.0</text>
+  <path d="M270 143 Q390 126 510 141 T930 142" fill="none" stroke="#f2dc3b" stroke-width="24" opacity="0.72" class="rough"/>
+  <text x="600" y="169" text-anchor="middle" class="ink" font-size="23">From submission automation to App Store release intelligence</text>
+
+  <!-- Core flow connectors are painted before the nodes. -->
+  <path d="M600 255 L600 282" fill="none" stroke="#4b4a47" stroke-width="3" marker-end="url(#arrow)" class="rough"/>
+  <path d="M600 384 L600 412" fill="none" stroke="#4b4a47" stroke-width="3" marker-end="url(#arrow)" class="rough"/>
+  <path d="M600 514 L600 535 M600 535 L320 535 L320 548 M600 535 L880 535 L880 548" fill="none" stroke="#22a9c8" stroke-width="3" marker-end="url(#arrowBlue)" class="rough"/>
+  <path d="M320 688 L320 713 L600 713 M880 688 L880 713 L600 713 L600 728" fill="none" stroke="#22a9c8" stroke-width="3" marker-end="url(#arrowBlue)" class="rough"/>
+  <path d="M600 856 L600 881" fill="none" stroke="#e8754c" stroke-width="3.5" marker-end="url(#arrowAccent)" class="rough"/>
+  <path d="M600 1002 L600 1027" fill="none" stroke="#e8754c" stroke-width="3.5" marker-end="url(#arrowAccent)" class="rough"/>
+  <path d="M600 1112 L600 1137 M600 1137 L275 1137 L275 1160 M600 1137 L900 1137 L900 1160" fill="none" stroke="#4b4a47" stroke-width="2.6" marker-end="url(#arrow)" class="rough"/>
+
+  <!-- v2 intelligence layers -->
+  <g filter="url(#shadow)">
+    <path d="M322 197 Q335 184 357 189 L843 189 Q866 184 878 199 L872 255 Q862 266 839 261 L361 261 Q337 266 328 252 Z" fill="#b9edfb" stroke="#343332" stroke-width="3" class="rough"/>
+  </g>
+  <text x="600" y="225" text-anchor="middle" class="card-title" font-size="27">iOS App Project</text>
+  <text x="600" y="249" text-anchor="middle" class="small">the source of truth</text>
+
+  <g filter="url(#shadow)">
+    <path d="M225 287 Q238 274 263 279 L937 279 Q962 274 975 289 L969 377 Q958 390 934 384 L266 384 Q241 390 231 375 Z" fill="#ffe68a" stroke="#343332" stroke-width="3" class="rough"/>
+  </g>
+  <text x="600" y="320" text-anchor="middle" class="card-title">Readiness</text>
+  <text x="600" y="352" text-anchor="middle" class="card-body">Technical · Metadata · Reviewability</text>
+  <text x="600" y="373" text-anchor="middle" class="small">evidence before confidence</text>
+
+  <g filter="url(#shadow)">
+    <path d="M250 415 Q263 402 286 407 L914 407 Q937 402 950 417 L944 507 Q933 520 910 514 L290 514 Q267 520 256 505 Z" fill="#d9b4d4" stroke="#343332" stroke-width="3" class="rough"/>
+  </g>
+  <text x="600" y="449" text-anchor="middle" class="card-title">Apple Pre-Review</text>
+  <text x="600" y="480" text-anchor="middle" class="card-body">App Review Guidelines</text>
+  <text x="600" y="501" text-anchor="middle" class="small">offline, explainable checks</text>
+
+  <text x="56" y="543" class="tiny" fill="#22a9c8">V2 INTELLIGENCE LAYERS</text>
+  <g filter="url(#shadow)">
+    <path d="M65 555 Q77 543 99 548 L541 548 Q563 543 575 558 L569 678 Q559 691 537 685 L103 685 Q81 691 71 676 Z" fill="#c9f0f1" stroke="#343332" stroke-width="3" class="rough"/>
+    <path d="M625 555 Q637 543 659 548 L1101 548 Q1123 543 1135 558 L1129 678 Q1119 691 1097 685 L663 685 Q641 691 631 676 Z" fill="#e8d6ee" stroke="#343332" stroke-width="3" class="rough"/>
+  </g>
+  <text x="320" y="591" text-anchor="middle" class="card-title" font-size="23">Privacy Intelligence</text>
+  <text x="320" y="629" text-anchor="middle" class="card-body" font-size="17">Permissions · Privacy Manifest</text>
+  <text x="320" y="655" text-anchor="middle" class="card-body" font-size="17">SDK Evidence</text>
+  <text x="880" y="591" text-anchor="middle" class="card-title" font-size="23">HIG / Design Review</text>
+  <text x="880" y="629" text-anchor="middle" class="card-body" font-size="17">Accessibility · Layout · Localization</text>
+  <text x="880" y="655" text-anchor="middle" class="card-body" font-size="17">Interaction</text>
+
+  <!-- Safe fix and preserved v1 submission core -->
+  <g filter="url(#shadow)">
+    <path d="M205 730 Q220 714 248 720 L952 720 Q980 714 995 732 L988 853 Q975 868 948 861 L252 861 Q225 868 212 850 Z" fill="#fff0cf" stroke="#e8754c" stroke-width="5" class="rough"/>
+  </g>
+  <path d="M280 752 Q370 733 460 749 T820 749 T920 752" fill="none" stroke="#f2c84b" stroke-width="17" opacity="0.72" class="rough"/>
+  <text x="600" y="766" text-anchor="middle" class="card-title" font-size="28">Safe Fix + Verify</text>
+  <text x="600" y="801" text-anchor="middle" class="card-body">Evidence · Diff · Recheck · Rollback</text>
+  <text x="600" y="833" text-anchor="middle" class="small">Only verified, reversible changes move forward.</text>
+
+  <g filter="url(#shadow)">
+    <path d="M205 884 Q220 868 248 874 L952 874 Q980 868 995 886 L988 1001 Q975 1016 948 1009 L252 1009 Q225 1016 212 998 Z" fill="#f49cce" stroke="#343332" stroke-width="4" class="rough"/>
+  </g>
+  <rect x="235" y="897" width="218" height="28" rx="14" fill="#343332"/>
+  <text x="344" y="916" text-anchor="middle" fill="#fffdf5" font-family="SFMono-Regular, Roboto Mono, monospace" font-size="13" font-weight="700" letter-spacing="1.3">v1 CORE PRESERVED</text>
+  <text x="600" y="958" text-anchor="middle" class="card-title" font-size="29">Build · Signing · Upload · Submit</text>
+  <text x="600" y="987" text-anchor="middle" class="small">the existing submission engine remains intact</text>
+
+  <g filter="url(#shadow)">
+    <path d="M410 1029 Q423 1016 447 1021 L753 1021 Q777 1016 790 1031 L784 1109 Q774 1122 750 1117 L450 1117 Q426 1122 416 1107 Z" fill="#b9edfb" stroke="#343332" stroke-width="3" class="rough"/>
+  </g>
+  <text x="600" y="1065" text-anchor="middle" class="card-title" font-size="27">Apple Review</text>
+  <text x="600" y="1093" text-anchor="middle" class="small">decision point</text>
+
+  <!-- Review outcomes -->
+  <g filter="url(#shadow)">
+    <path d="M62 1162 Q75 1149 98 1154 L452 1154 Q475 1149 488 1164 L482 1290 Q472 1303 449 1298 L101 1298 Q78 1303 68 1288 Z" fill="#c9f0c0" stroke="#4e9d67" stroke-width="3" class="rough"/>
+  </g>
+  <text x="275" y="1199" text-anchor="middle" class="card-title" fill="#347b4d" font-size="27">APPROVED</text>
+  <path d="M180 1224 L370 1224" fill="none" stroke="#4e9d67" stroke-width="2.5" marker-end="url(#arrowBlue)" class="rough"/>
+  <text x="275" y="1265" text-anchor="middle" class="card-body" font-size="24">Released</text>
+
+  <g filter="url(#shadow)">
+    <path d="M515 1158 Q528 1145 550 1150 L1142 1150 Q1164 1145 1177 1160 L1171 1316 Q1161 1329 1139 1324 L553 1324 Q531 1329 521 1314 Z" fill="#fffdf5" stroke="#e8754c" stroke-width="4" class="rough"/>
+  </g>
+  <text x="545" y="1184" class="tiny" fill="#e8754c">REJECTED · RECOVERY LOOP</text>
+  <text x="1148" y="1185" text-anchor="end" class="small" fill="#e8754c">approval required</text>
+  <path d="M545 1200 L1146 1200" stroke="#d8d1c4" stroke-width="2"/>
+  <g class="ink" font-size="17" font-weight="600">
+    <text x="555" y="1225">Rejection Recovery</text><text x="555" y="1251">Guideline Mapping</text><text x="555" y="1277">Root Cause</text><text x="555" y="1303">Fix + Verify</text>
+    <text x="850" y="1225">Reply Draft</text><text x="850" y="1251">User Approval</text><text x="850" y="1277">Resubmit</text><text x="850" y="1303">→ Apple Review</text>
+  </g>
+  <path d="M815 1211 L815 1310" stroke="#d8d1c4" stroke-width="2"/>
+  <path d="M1134 1315 C1144 1380 1075 1400 1000 1400 C890 1400 792 1384 792 1350 C792 1338 804 1327 822 1320" fill="none" stroke="#e8754c" stroke-width="3" marker-end="url(#arrowAccent)" class="rough"/>
+  <text x="1016" y="1388" text-anchor="middle" class="tiny" fill="#e8754c">RESUBMIT LOOP</text>
+
+  <!-- Principles and footer -->
+  <g>
+    <path d="M62 1372 Q72 1361 89 1365 L385 1365 Q402 1361 412 1374 L408 1420 Q400 1431 383 1427 L91 1427 Q74 1431 66 1418 Z" fill="#f2dc3b" opacity="0.78" stroke="#c8aa25" stroke-width="2" class="rough"/>
+    <path d="M450 1372 Q460 1361 477 1365 L723 1365 Q740 1361 750 1374 L746 1420 Q738 1431 721 1427 L479 1427 Q462 1431 454 1418 Z" fill="#c9f0f1" stroke="#71b9bc" stroke-width="2" class="rough"/>
+    <path d="M788 1372 Q798 1361 815 1365 L1111 1365 Q1128 1361 1138 1374 L1134 1420 Q1126 1431 1109 1427 L817 1427 Q800 1431 792 1418 Z" fill="#f6c3a9" stroke="#d98b68" stroke-width="2" class="rough"/>
+  </g>
+  <text x="237" y="1402" text-anchor="middle" class="ink" font-size="16" font-weight="700">UNKNOWN ≠ PASS</text>
+  <text x="600" y="1402" text-anchor="middle" class="ink" font-size="16" font-weight="700">VERIFY BEFORE CLAIM</text>
+  <text x="963" y="1402" text-anchor="middle" class="ink" font-size="16" font-weight="700">NO RESUBMIT WITHOUT APPROVAL</text>
+  <path d="M70 1451 Q310 1439 540 1451 T1130 1451" fill="none" stroke="#d8d1c4" stroke-width="2" class="rough"/>
+  <text x="600" y="1470" text-anchor="middle" class="mono" font-size="15">Evidence-driven · Conservative by design · Existing v1 workflow preserved</text>
+</svg>

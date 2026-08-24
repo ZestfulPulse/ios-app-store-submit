@@ -1,0 +1,3 @@
+We found an issue with your app's metadata. The app description contained placeholder or incomplete text.
+
+Please update your app description to accurately describe your app and resubmit.

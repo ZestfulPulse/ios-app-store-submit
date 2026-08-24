@@ -1,0 +1,8 @@
+{
+  "recovery_report_id": "recovery:post-state",
+  "submission": {"app_id": "123456789", "version": "2.0.0", "build_id": "209", "submission_id": "submission-post-state"},
+  "recovery_summary": {"resubmit_candidate": "YES"},
+  "verification_results": [{"root_cause_id": "rc:metadata", "claim_status": "VERIFIED"}],
+  "reply_drafts": [{"draft_id": "reply:post-state", "ready_to_send": true, "claims": [{"status": "VERIFIED"}]}],
+  "post_submit_state": "WAITING_FOR_REVIEW"
+}

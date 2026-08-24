@@ -1,0 +1,3 @@
+We found that some of your app's localized content is incomplete or missing for one or more supported languages.
+
+Please ensure your app is fully and accurately localized for every language you support, then resubmit.

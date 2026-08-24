@@ -1,0 +1,5 @@
+Guideline 2.1 - Performance - App Completeness
+
+We found that your app crashed when launched on iPhone running iOS 18.0. This bug needs to be fixed before your app can move forward in the review process.
+
+Please review the crash and resubmit your app.

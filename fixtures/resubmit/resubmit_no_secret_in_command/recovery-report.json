@@ -1,0 +1,7 @@
+{
+  "recovery_report_id": "recovery:no-secret",
+  "submission": {"app_id": "123456789", "version": "2.0.0", "build_id": "211", "submission_id": "submission-no-secret"},
+  "recovery_summary": {"resubmit_candidate": "YES"},
+  "verification_results": [{"root_cause_id": "rc:metadata", "claim_status": "VERIFIED"}],
+  "reply_drafts": [{"draft_id": "reply:no-secret", "ready_to_send": true, "claims": [{"status": "VERIFIED"}]}]
+}

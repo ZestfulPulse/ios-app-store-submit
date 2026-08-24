@@ -1,0 +1,7 @@
+{
+  "recovery_report_id": "recovery:reply-not-ready",
+  "submission": {"app_id": "123456789", "version": "2.0.0", "build_id": "208", "submission_id": "submission-reply-not-ready"},
+  "recovery_summary": {"resubmit_candidate": "NO"},
+  "verification_results": [{"root_cause_id": "rc:metadata", "claim_status": "UNVERIFIED", "pending_reason": "still_blocked"}],
+  "reply_drafts": [{"draft_id": "reply:not-ready", "ready_to_send": false, "claims": [{"status": "UNVERIFIED"}]}]
+}

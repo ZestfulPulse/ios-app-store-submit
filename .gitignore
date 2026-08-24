@@ -12,6 +12,8 @@ AuthKey_*.p8
 
 # Local signing folders
 .asc/
+# Phase 7 local approval artifacts are generated state and must never be committed.
+.asc/resubmit/
 signing/
 
 # Environment
@@ -30,3 +32,11 @@ build/
 # Python
 __pycache__/
 *.pyc
+
+# Authored recovery test fixture, not generated ASC state
+!fixtures/recovery/reject_demo_credentials_user_attested/.asc/
+!fixtures/recovery/reject_demo_credentials_user_attested/.asc/recovery_attestations.json
+
+# Authored recovery test fixture, not generated ASC state
+!fixtures/recovery/reject_demo_credentials_user_attested/.asc/
+!fixtures/recovery/reject_demo_credentials_user_attested/.asc/recovery_attestations.json

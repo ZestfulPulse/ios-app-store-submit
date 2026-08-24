@@ -1,0 +1,39 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXNativeTarget section */
+		111111111111111111111111 /* Runner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 222222222222222222222222 /* Build configuration list for PBXNativeTarget "Runner" */;
+			name = Runner;
+			productName = Runner;
+		};
+/* End PBXNativeTarget section */
+
+/* Begin XCBuildConfiguration section */
+		333333333333333333333333 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ABCDE12345;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.readiness;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		444444444444444444444444 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = ABCDE12345;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.readiness;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+	};
+}

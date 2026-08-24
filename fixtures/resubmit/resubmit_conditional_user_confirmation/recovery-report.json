@@ -1,0 +1,7 @@
+{
+  "recovery_report_id": "recovery:conditional",
+  "submission": {"app_id": "123456789", "version": "2.0.0", "build_id": "202", "submission_id": "submission-conditional"},
+  "recovery_summary": {"resubmit_candidate": "CONDITIONAL"},
+  "verification_results": [{"root_cause_id": "rc:runtime", "claim_status": "UNVERIFIED", "pending_reason": "requires_user_confirmation"}],
+  "reply_drafts": [{"draft_id": "reply:conditional", "ready_to_send": false, "claims": [{"status": "UNVERIFIED"}]}]
+}

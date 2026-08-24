@@ -1,0 +1,3 @@
+We found that your app's user interface does not appear to follow our Human Interface Guidelines for accessibility.
+
+Please review your interface for compliance and resubmit your app.

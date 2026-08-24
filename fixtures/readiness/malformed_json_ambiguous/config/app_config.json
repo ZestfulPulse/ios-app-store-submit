@@ -1,0 +1,6 @@
+{
+  "name": "readiness_fixture",
+  "flags": [
+    "a",
+    "b"
+  ]

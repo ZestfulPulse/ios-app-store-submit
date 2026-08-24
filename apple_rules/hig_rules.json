@@ -1,0 +1,149 @@
+{
+  "ruleset_id": "apple-human-interface-guidelines-2026-06-08",
+  "source_name": "Apple Human Interface Guidelines",
+  "source_url": "https://developer.apple.com/design/human-interface-guidelines/",
+  "source_last_updated": "2026-06-08",
+  "snapshot_date": "2026-08-23",
+  "source_language": "en",
+  "schema_version": "1.0.0",
+  "rules": [
+    {
+      "rule_id": "DESIGN.ACCESSIBILITY.TOUCH_TARGET_SIZE",
+      "hig_area": "ACCESSIBILITY",
+      "title": "Interactive control meets minimum touch target size",
+      "description": "Apple recommends a minimum interactive touch target of 44x44 points. When an interactive control's width/height is an explicit, statically-parsed fixed literal below that threshold, this is a directly provable fact about the source, not an inference about rendered size.",
+      "severity_default": "BLOCKED",
+      "evaluation_type": "DETERMINISTIC",
+      "required_evidence": ["explicit fixed width/height literal on an interactive control"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/inputs",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "HIGH when an explicit fixed-size literal is parsed directly from source; UNKNOWN when no explicit size is present -- rendered size is never inferred."
+    },
+    {
+      "rule_id": "DESIGN.ACCESSIBILITY.ICON_BUTTON_SEMANTIC_LABEL",
+      "hig_area": "ACCESSIBILITY",
+      "title": "Icon-only interactive control has an accessible label",
+      "description": "An icon-only interactive control (no visible text) should carry an accessible label (tooltip/semanticLabel/Semantics) so assistive technologies can describe it.",
+      "severity_default": "BLOCKED",
+      "evaluation_type": "EVIDENCE_REQUIRED",
+      "required_evidence": ["icon-only control construct", "absence of tooltip/semanticLabel/Semantics within a bounded window"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/accessibility",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "HIGH when both the icon-only construct and the absence of a label are directly parsed within a bounded, deterministic window; never inferred from prose."
+    },
+    {
+      "rule_id": "DESIGN.ACCESSIBILITY.DYNAMIC_TYPE",
+      "hig_area": "ACCESSIBILITY",
+      "title": "Hardcoded font size may resist Dynamic Type scaling",
+      "description": "A hardcoded fontSize with no accompanying text-scaling API usage in the same file is a heuristic risk signal, not proof that Dynamic Type is unsupported.",
+      "severity_default": "RISK",
+      "evaluation_type": "RISK_HEURISTIC",
+      "required_evidence": ["hardcoded fontSize literal", "absence of text-scaling API usage in file"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/typography",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "MEDIUM at most; a heuristic text match is never escalated to BLOCKED."
+    },
+    {
+      "rule_id": "DESIGN.LAYOUT.SAFE_AREA",
+      "hig_area": "LAYOUT",
+      "title": "Safe-area handling evidence",
+      "description": "Whether a screen actually renders inside the safe area cannot be determined from source alone; SafeArea usage is bridged as evidence only. Its absence is UNKNOWN, never an automatic BLOCKED finding.",
+      "severity_default": "UNKNOWN",
+      "evaluation_type": "EVIDENCE_REQUIRED",
+      "required_evidence": ["SafeArea usage in the same file as a Scaffold"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/layout",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "HIGH when SafeArea usage is found locally; UNKNOWN otherwise, never inferred as a violation."
+    },
+    {
+      "rule_id": "DESIGN.LAYOUT.HARDCODED_DIMENSIONS",
+      "hig_area": "LAYOUT",
+      "title": "Hardcoded full-screen-like dimensions risk breaking size classes",
+      "description": "A Container/SizedBox with a fixed width and height matching a specific device's screen dimensions is a heuristic risk signal for layouts that may not adapt across size classes.",
+      "severity_default": "RISK",
+      "evaluation_type": "RISK_HEURISTIC",
+      "required_evidence": ["fixed width+height literal pair matching a known device screen size"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/layout",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "MEDIUM at most; a heuristic text match is never escalated to BLOCKED."
+    },
+    {
+      "rule_id": "DESIGN.LOCALIZATION.HARDCODED_STRING",
+      "hig_area": "LOCALIZATION",
+      "title": "Hardcoded user-visible string",
+      "description": "A string literal passed directly to a user-visible text widget, with no localization delegate/call in the same expression, is a heuristic risk signal for missing localization -- never proof, since some literals are intentionally non-localized (e.g. debug/log text).",
+      "severity_default": "RISK",
+      "evaluation_type": "RISK_HEURISTIC",
+      "required_evidence": ["string literal passed to a user-visible text widget"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/localization",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "MEDIUM at most; a heuristic text match is never escalated to BLOCKED."
+    },
+    {
+      "rule_id": "DESIGN.LOCALIZATION.MISSING_KEY",
+      "hig_area": "LOCALIZATION",
+      "title": "Localization key missing from one language's resource file",
+      "description": "When two or more localization resource files are found locally and a key present in one is absent from another, this is a directly parsed, deterministic fact.",
+      "severity_default": "BLOCKED",
+      "evaluation_type": "DETERMINISTIC",
+      "required_evidence": ["two or more parsed localization resource files with a key-set difference"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/localization",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "HIGH: derived directly from parsed local resource files, never inferred."
+    },
+    {
+      "rule_id": "DESIGN.LOCALIZATION.FIXED_TEXT_CONTAINER",
+      "hig_area": "LOCALIZATION",
+      "title": "Fixed-width text container is a localization/layout risk",
+      "description": "Text inside a container with a small, fixed literal width risks clipping once translated into a longer-running language; this is a heuristic risk signal only.",
+      "severity_default": "RISK",
+      "evaluation_type": "RISK_HEURISTIC",
+      "required_evidence": ["small fixed width literal on a container wrapping a text widget"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/localization",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "MEDIUM at most; a heuristic text match is never escalated to BLOCKED."
+    },
+    {
+      "rule_id": "DESIGN.INTERACTION.GESTURE_ONLY",
+      "hig_area": "INTERACTION",
+      "title": "Gesture-only interaction with no discoverable alternative",
+      "description": "A bare gesture-detection wrapper with no accessibility affordance (Semantics/button role) nearby is a heuristic risk signal for a gesture-only interaction with no discoverable alternative.",
+      "severity_default": "RISK",
+      "evaluation_type": "RISK_HEURISTIC",
+      "required_evidence": ["gesture-detection construct with no accessibility affordance in a bounded window"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/gestures",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "MEDIUM at most; a heuristic text match is never escalated to BLOCKED."
+    },
+    {
+      "rule_id": "DESIGN.INTERACTION.PERMISSION_CONTEXT",
+      "hig_area": "INTERACTION",
+      "title": "Permission request without visible preceding explanatory context",
+      "description": "A permission-request API call with no explanatory dialog/text construct in a bounded preceding window is a heuristic risk signal, not proof that no context is ever shown to the user.",
+      "severity_default": "RISK",
+      "evaluation_type": "RISK_HEURISTIC",
+      "required_evidence": ["permission-request API call with no dialog/text construct in a bounded preceding window"],
+      "fixability": "MANUAL",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/privacy",
+      "source_last_updated": "2026-06-08",
+      "confidence_policy": "MEDIUM at most; a heuristic text match is never escalated to BLOCKED."
+    }
+  ],
+  "future_sources": [
+    {
+      "source_name": "Rendered UI / Screenshot Visual Evidence",
+      "source_url": "https://developer.apple.com/design/human-interface-guidelines/",
+      "status": "not_yet_implemented",
+      "note": "Reserved for a future phase that ingests actual rendered-UI or screenshot evidence (via --design-evidence) to resolve UNKNOWN findings that require runtime/visual proof. No active Phase 5 rule claims screenshot or OCR coverage."
+    }
+  ]
+}
