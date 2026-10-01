@@ -22,3 +22,11 @@ class MetadataGateTests(unittest.TestCase):
         result = inspect_metadata(ProjectInspector(FIXTURES / "missing_privacy_policy"))
         privacy = next(item for item in result.findings if item.rule_id == "PRIVACY_POLICY")
         self.assertEqual(privacy.status, Status.UNKNOWN)
+
+    def test_unresolved_build_variable_display_name_is_not_pass(self):
+        # "$(PRODUCT_NAME)" is the default CFBundleDisplayName; it is an unresolved
+        # Xcode build variable, not a finalized name. Consistent with the version
+        # check, which treats "$(" as unresolved (technical.py).
+        result = inspect_metadata(ProjectInspector(FIXTURES / "metadata_display_name_build_var"))
+        display = next(item for item in result.findings if item.rule_id == "DISPLAY_NAME")
+        self.assertEqual(display.status, Status.UNKNOWN)
