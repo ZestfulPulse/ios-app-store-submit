@@ -50,7 +50,7 @@ def inspect_metadata(inspector: ProjectInspector) -> GateResult:
     info_path = "ios/Runner/Info.plist"
     info = inspector.plist_values(info_path)
     display = info.get("CFBundleDisplayName") or info.get("CFBundleName")
-    if isinstance(display, str) and display.strip() and "${" not in display:
+    if isinstance(display, str) and display.strip() and "${" not in display and "$(" not in display:
         findings.append(_finding("DISPLAY_NAME", "App display-name candidate", Status.PASS,
                                  f"Found display-name candidate {display.strip()!r}.",
                                  evidence=(Evidence(kind="plist", path=info_path,
