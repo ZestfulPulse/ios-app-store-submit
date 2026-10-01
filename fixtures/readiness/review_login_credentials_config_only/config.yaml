@@ -1,0 +1,6 @@
+# Ordinary application configuration checked into the repository.
+# These are app/runtime credentials, not a documented account for App Review.
+database:
+  host: db.internal.example.com
+  username: service_bot
+  password: ${DB_PASSWORD}

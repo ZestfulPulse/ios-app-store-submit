@@ -20,3 +20,12 @@ class ReviewabilityGateTests(unittest.TestCase):
         result = inspect_reviewability(ProjectInspector(FIXTURES / "valid_flutter"))
         finding = next(item for item in result.findings if item.rule_id == "LOGIN")
         self.assertEqual(finding.status, Status.UNKNOWN)
+
+    def test_credentials_in_config_are_not_review_access_evidence(self):
+        # username:/password: keys in ordinary config are app/runtime credentials,
+        # not a documented account for App Review. They must not satisfy the
+        # Guideline 2.1 demo-account requirement (see the comment above the regex).
+        result = inspect_reviewability(ProjectInspector(FIXTURES / "review_login_credentials_config_only"))
+        finding = next(item for item in result.findings if item.rule_id == "REVIEW_INFO")
+        self.assertEqual(finding.status, Status.BLOCKED)
+        self.assertTrue(finding.blocking)
