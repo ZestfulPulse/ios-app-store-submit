@@ -46,7 +46,7 @@ def inspect_reviewability(inspector: ProjectInspector) -> GateResult:
     # documentation/configuration is considered evidence of supplied review access.
     review_files = [path for path in inspector.all_text_files()
                     if path.suffix.lower() in {".md", ".txt", ".yaml", ".yml", ".json", ".plist", ".env"}]
-    review_matches = inspector.search(r"(?:demo\s+(?:account|credentials?)|review\s+(?:account|credentials?|notes?)|test\s+account|username\s*[:=]|password\s*[:=])", review_files)
+    review_matches = inspector.search(r"(?:demo\s+(?:account|credentials?)|review\s+(?:account|credentials?|notes?)|test\s+account)", review_files)
     if review_matches:
         findings.append(_finding("REVIEW_INFO", "Demo/review-account configuration", Status.PASS,
                                  "Found a possible demo/review-account or review-notes candidate.",
